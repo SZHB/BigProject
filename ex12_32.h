@@ -22,7 +22,7 @@ class TextQuery{
 
 	private:
 		shared_ptr<StrBlob> input;
-		std::map<string,shared_ptr<std::set<StrBlob::size_type>> result;
+		std::map<string,shared_ptr<std::set<StrBlob::size_type>>> result;
 };
 
 class QueryResult{
@@ -36,7 +36,7 @@ class QueryResult{
 			}
 	private:
 			string word;
-			shhared_ptr<std::set<StrBolb::size_type>>nos;
+			shared_ptr<std::set<StrBlob::size_type>>nos;
 			shared_ptr<StrBlob>input;
 };
 

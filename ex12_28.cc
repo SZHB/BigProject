@@ -22,29 +22,29 @@ int main()
 {
 	std::ifstream file("../data/letter.txt");
 	vector<string> input;
-	std::map<string,std::set<deltype(input,size())>>dictionary;
-	deltype(input.size())lineNo{0};
+	std::map<string,std::set<decltype(input.size())>> dictionary;
+	decltype(input.size())lineNo{0};
 
 	for(string line;std::getline(file,line);++lineNo){
-		input.push_back(line);
-		std::istreamstream line_stream(line);
+ 		input.push_back(line);
+		std::istringstream line_stream(line);
 		for(string text,word;line_stream>>text;word.clear()){
-			std::remove_copy_if(text.begin().text.end(),
-					std::back_insert(word),ispunct);
+		 	std::remove_copy_if(text.begin(),text.end(),
+					std::back_inserter(word),ispunct);
 			dictionary[word].insert(lineNo);
 		}
 	}
 	while(true){
-		std::cout<<"enter word to look for,or q to quit:";
+ 		std::cout<<"enter word to look for,or q to quit:";
 		string s;
 		if(!(std::cin>>s)||s=="q")break;
 		auto found =dictionary.find(s);
-		if(found!=dictionary.end(s)){
-			std::cout<<s<<"occurs"<<found->second.size()
-				<<(found->second.size()>1?"times":"time")
+		if(found!=dictionary.end()){
+	 		std::cout<<s<<"occurs"<<found->second.size()
+	      			<<(found->second.size()>1?"times":"time")
 				<<std::endl;
 		}else
-			std::cout<<s<"occurs 0 time"<<std::endl;
+			std::cout<<s<<"occurs 0 time"<<std::endl;
 	}
 }
 

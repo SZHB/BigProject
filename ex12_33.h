@@ -23,7 +23,7 @@ class TextQuery{
 		QueryResult query(const string&)const;
 	private:
 		shared_ptr<StrBlob> input;
-		std::map<string,shared_ptr<std::set<StrBlob::size_type>::iterator;
+		std::map<string,shared_ptr<std::set<StrBlob::size_type> > > result;
 };
 class QueryResult{
 	public:
@@ -42,7 +42,7 @@ class QueryResult{
 	private:
 		string word;
 		shared_ptr<std::set<StrBlob::size_type>>nos;
-		shared_ptr<StrBolb>input;
+		shared_ptr<StrBlob>input;
 };
 std::ostream& print(std::ostream&,const QueryResult&);
 #endif

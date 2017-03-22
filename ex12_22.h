@@ -19,13 +19,13 @@ using std::string;
 class ConstStrBlobPtr;
 
 class StrBlob{
-	public:
-		using size_type =vector<string>::size_type;
+	 public:
+ 		using size_type =vector<string>::size_type;
 		friend class ConstStrBlobPtr;
 		ConstStrBlobPtr begin() const;//shuold add const
 		ConstStrBlobPtr end()const;//should add const
 
-		StrBlob():data(std::make_shared_ptr<vector<string>>()){}
+		StrBlob():data(std::make_shared<vector<string>>()){}
 		StrBlob(std::initializer_list<string> il)
 			:data(std::make_shared<vector<string>>(il))
 		{
@@ -65,40 +65,42 @@ class StrBlob{
 	private:
 		void check(size_type i,const string& msg)const
 		{
-			if(i>=data->size() throw std::cout_of_range(msg);
+			if(i>=data->size()) throw std::out_of_range(msg);
 		}
 
 	private:
 		std::shared_ptr<vector<string>>data;
 };
 
-class ConstStrBlob{
+class ConstStrBlobPtr{
 public:
-ConstStrBlobPtr() :curr(0){}
-ConstStrBlobPtr(const StrBlobPtr& p){return p.curr!=curr;}
-bool operator!=(ConstStrBlobPtr& p){return p.curr!=curr;}
-const string& deref() const
-{
+	ConstStrBlobPtr() :curr(0){}
+	 ConstStrBlobPtr(const StrBlob& a,size_t sz=0)
+	 :wptr(a.data),curr(sz){}
+	bool operator!=(ConstStrBlobPtr& p)
+	{return p.curr!=curr;}
+	const string& deref() const
+	{
 	//return value should add const
 	auto p=check(curr,"dereference past end");
 	return (*p)[curr];
-}
-constStrBlobPtr& incr()
-{
+	}
+	ConstStrBlobPtr& incr()
+	{
 	check(curr,"increment past end of StrBlob");
 	++curr;
 	return *this;
-}
+	}
 private:
-std::shared_ptr<vector<string>> check(size_t i,const string& msg) const
-{
+	std::shared_ptr<vector<string>> check(size_t i,const string& msg) const
+	{
 	auto ret=wptr.lock();
 	if(!ret)throw std::runtime_error("unbound StrBlobPtr");
 	if(i>=ret->size())throw std::out_of_range(msg);
 	return ret;
-}
-std::weak_ptr<vector<string>>wptr;
-size_t curr;
+	}
+	std::weak_ptr<vector<string>>wptr;
+	size_t curr;
 };
 #endif
 
