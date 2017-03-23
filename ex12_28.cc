@@ -1,4 +1,4 @@
- ///
+///
  /// @file    ex12_28.cc
  /// @author  lemon(haohb13@gmail.com)
  /// @date    2017-03-21 09:34:09
